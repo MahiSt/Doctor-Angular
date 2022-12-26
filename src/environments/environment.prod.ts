@@ -1,3 +1,8 @@
 export const environment = {
-  production: true
+  production: true,
+  keycloak:{
+    url: 'http://auth.acheron.com',
+    realm: 'Fullstack-Project',
+    clientId: 'angular',
+}
 };
