@@ -4,5 +4,6 @@ export const environment = {
     url: 'http://auth.acheron.com',
     realm: 'Fullstack-Project',
     clientId: 'angular',
+    clientSecret: 'DUBRxiYWrYlWxKmrVRC0OLPPEhryAWHP'
 }
 };

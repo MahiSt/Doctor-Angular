@@ -12,6 +12,8 @@ import { AddDoctorComponent } from './components/add-doctor/add-doctor.component
 import { HttpClientModule } from '@angular/common/http';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { MaterialModule } from './modules/material/material.module';
+import { ModelpopupComponent } from './components/modelpopup/modelpopup.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -21,15 +23,18 @@ import { MaterialModule } from './modules/material/material.module';
     DoctorListComponent,
     DoctorDetailsComponent,
     AddDoctorComponent,
-    NavBarComponent
+    NavBarComponent,
+    ModelpopupComponent,
   ],
   imports: [
     BrowserModule,
     AuthModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     MaterialModule,
-    AppRoutingModule
+    AppRoutingModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

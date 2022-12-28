@@ -1,1 +1,102 @@
-<p>add-doctor works!</p>
+<h1 mat-dialog-title>Doctor</h1>
+<form [formGroup]="reactiveForm" (ngSubmit)="saveDoctor(reactiveForm)">
+    <div mat-dialog-content>
+        <mat-form-field>
+            <mat-label>Doctor Id</mat-label>
+            <input type="number" placeholder="Doctor Id" matInput formControlName="id">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Doctor Name</mat-label>
+            <input type="text" placeholder="Doctor Name" matInput formControlName="doctorName">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Gender</mat-label>
+            <mat-radio-group formControlName="gender" aria-label="Select an Gender">
+                <mat-radio-button value="Male">Male</mat-radio-button>
+                <mat-radio-button value="Female">Female</mat-radio-button>
+              </mat-radio-group>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Contact No</mat-label>
+            <input placeholder="Contact No" matInput formControlName="contactNo">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Registration Id</mat-label>
+            <input placeholder="Registration Id" matInput formControlName="registrationId">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>D.O.B</mat-label>
+            <input placeholder="D.O.B" matInput formControlName="dob">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>E-Mail</mat-label>
+            <input type="email" placeholder="E-Mail" matInput formControlName="email">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Address</mat-label>
+            <input placeholder="Address" matInput formControlName="address">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Qualification</mat-label>
+            <input placeholder="Qualification" matInput formControlName="qualification">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select formControlName="speciality">
+            <mat-label>Speciality</mat-label>
+            <mat-checkbox class="example-margin" *ngFor="let spec of specialitees">
+                {{spec}}
+            </mat-checkbox>        
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Certification</mat-label>
+            <input placeholder="Certification" matInput formControlName="certification">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Experience</mat-label>
+            <input placeholder="Experience" matInput formControlName="experience">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>HospitalName</mat-label>
+            <input placeholder="HospitalName" matInput formControlName="hospitalName">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Available Time</mat-label>
+            <input placeholder="Available Time" matInput formControlName="available_time">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Acheivements</mat-label>
+            <input placeholder="Acheivements" matInput formControlName="acheivements">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Mode</mat-label>
+            <section class="example-section" formControlName="mode">
+                <mat-checkbox class="example-margin">Video</mat-checkbox>
+                <mat-checkbox class="example-margin">Hospital Op</mat-checkbox>
+                <mat-checkbox class="example-margin">Personal care</mat-checkbox>
+              </section>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Fees</mat-label>
+            <input placeholder="Fees" matInput formControlName="fees">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Languages Known</mat-label>
+            <input placeholder="Languages Known" matInput formControlName="languagesKnown">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Description</mat-label>
+            <input placeholder="Description" matInput formControlName="description">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Ratings</mat-label>
+            <input placeholder="Ratings" matInput formControlName="ratings">
+        </mat-form-field>
+    </div>
+      <div mat-dialog-actions>
+        <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+        <button type="submit" mat-button mat-raised-button color="primary" cdkFocusInitial>Save</button>
+        <!-- <input type="submit" value="Save" mat-button mat-raised-button color="primary" cdkFocusInitial> -->
+    </div>  
+      
+</form>
