@@ -1,10 +1,25 @@
 table {
-    width: 300%;
+    width: 350%;
   }
   div {
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: scroll;
+    max-height: 500px;
   }
 .margin-left mat-radion-button:not(:first-child){
     margin-left:10px;
 }
+.list-icons{
+  float: none;
+}
+mat-paginator{
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+}
+/* .list-container{
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+} */
+
   

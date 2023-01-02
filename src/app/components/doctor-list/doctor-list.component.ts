@@ -1,11 +1,15 @@
-import { Component, OnInit ,AfterViewInit, ViewChild} from '@angular/core';
+import { Component, OnInit , TemplateRef} from '@angular/core';
 import { DoctorService } from 'src/app/services/doctor.service';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
+import { PageEvent} from '@angular/material/paginator';
+import { Sort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { Doctor } from 'src/app/models/doctor';
-import { MatDialog } from '@angular/material/dialog';
-import { AddDoctorComponent } from '../add-doctor/add-doctor.component';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { AuthService } from 'src/app/auth/service/auth.service';
+import { Router } from '@angular/router';
+import { DoctorDetailsComponent } from '../doctor-details/doctor-details.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 
 @Component({
@@ -14,6 +18,16 @@ import { AddDoctorComponent } from '../add-doctor/add-doctor.component';
   styleUrls: ['./doctor-list.component.css']
 })
 export class DoctorListComponent implements OnInit {
+
+  offset!:number;
+  pageSize!:number;
+  sort!:Sort;
+  dataSource :any;
+  doctors!:Doctor[];
+  roles!:string[];
+  id!:number;
+  active!:string;
+  direction!:string;
 
   displayedColumns: string[] = [       
      'id',
@@ -30,38 +44,38 @@ export class DoctorListComponent implements OnInit {
      'experience',
      'hospitalName',
      'available_time',
-     'acheivements',
+     'bloodGroup',
      'mode',
      'fees',
      'languagesKnown',
      'description',
      'ratings',
-     'action',
   ];
-  dataSource :any;
-  doctors!:Doctor[];
 
-  @ViewChild(MatPaginator) paginator !:MatPaginator;
-  @ViewChild(MatSort) sort !:MatSort;
-
-  constructor(private _doctorService:DoctorService,private _dialog:MatDialog) {
-
+  constructor(private _doctorService:DoctorService,
+              private _dialog:MatDialog,
+              private _authService:AuthService,
+              private _router:Router,
+              private _snackBar: MatSnackBar,
+              ) {
   }
 
   ngOnInit(): void {
     this.getAll();
-
+    this.roles=this._authService.getRoles();
+    this.offset=0;
+    this.pageSize=5;
   }
 
   getAll(){
-    this._doctorService.getdoctors().subscribe(result=>{
-      this.doctors=result;
-
-      this.dataSource=new MatTableDataSource<Doctor>(this.doctors);
-      this.dataSource.paginator=this.paginator;
-      this.dataSource.sort=this.sort;
-    }
-    );
+    this._doctorService.getdoctors().subscribe({
+      next:(data)=>{
+        this.doctors=data;
+        this.dataSource=new MatTableDataSource<Doctor>(this.doctors);
+      },
+      error:(error)=>console.log(error),
+      complete:()=>console.log('Get All In Doctor-List Completed')
+  });
   }
 
   filterChange(event:Event){
@@ -70,29 +84,79 @@ export class DoctorListComponent implements OnInit {
   }
 
   getrow(row:any){
-    console.log(row);
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data=row;
+    const dialogRef= this._dialog.open(DoctorDetailsComponent,dialogConfig);
+    dialogRef.afterClosed().subscribe(
+      data => {
+        if(data==="edit"){
+          this.edit(row.id);
+        }
+      }
+  );    
+
+      // this._router.navigate(['/doctor-details',row.id]);
+   }
+
+  openDialog(pick:TemplateRef<MatDialog>){
+    this._dialog.open(pick);
+  }
+
+  options:string[]=this.displayedColumns;
+
+  show=(filter:string[]|any)=>{
+    if(filter){
+      this.options=filter;
+    }
+  }
+
+  onPageChange(PageSizeOptions:PageEvent){
+    this.offset=PageSizeOptions.pageIndex;
+    this.pageSize=PageSizeOptions.pageSize;
+    this.sortwithPagination();
+  }
+
+  sortData(sort: Sort){
+    this.active=sort.active;
+    this.direction=sort.direction;
+    this.sortwithPagination();
+  }
+
+  sortwithPagination(){
+    this._doctorService.getDoctorsWithSortingAndPagination(this.offset,this.pageSize,this.active,this.direction).subscribe({
+      next:(data)=>{
+        this.dataSource.data=data;
+        this.doctors=data;
+      },
+      error:(error)=>{
+        console.log(error);
+      },
+      complete:()=>{
+        console.log("Sorting with Pagination Completed");
+      }
+
+    });
   }
 
   edit(doctorId:number){
     console.log(doctorId);
-
-    // let doctor!:Doctor;
-    // this._doctorService.getById(doctorId).subscribe((res)=>{
-    //   doctor=res;
-    // })
-    // this._doctorService.update(doctor);
+    this._snackBar.open("Loading....", "OK!" );
+    this._router.navigate(['/update-doctor',doctorId]);
   }
 
   delete(doctorId:number){
-    console.log(doctorId);
-    // this._doctorService.delete(doctorId);
+    console.log(this.id);
+    this._snackBar.open("Loading....", "Ok!" );
+    this._doctorService.deleteDoctor(doctorId).subscribe({
+      next:(data)=>{
+        console.log(data);
+      },
+      
+    });
   }
 
-  openDialog(enteranimation:any,exitanimation:any){
-    this._dialog.open(AddDoctorComponent,{
-      enterAnimationDuration:enteranimation,
-      exitAnimationDuration:exitanimation,
-      width:"50%"
-    })
-  }
 }

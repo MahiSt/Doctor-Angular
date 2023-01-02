@@ -12,8 +12,8 @@ import { AddDoctorComponent } from './components/add-doctor/add-doctor.component
 import { HttpClientModule } from '@angular/common/http';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { MaterialModule } from './modules/material/material.module';
-import { ModelpopupComponent } from './components/modelpopup/modelpopup.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { GridViewComponent } from './components/grid-view/grid-view.component';
 
 
 @NgModule({
@@ -24,7 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     DoctorDetailsComponent,
     AddDoctorComponent,
     NavBarComponent,
-    ModelpopupComponent,
+    GridViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +36,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     
   ],
-  providers: [],
+  providers: [ ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

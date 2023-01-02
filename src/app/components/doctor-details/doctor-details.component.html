@@ -1,1 +1,30 @@
-<p>doctor-details works!</p>
+<p mat-dialog-title>Doctor: {{doctor.doctorName}}</p>
+<button mat-icon-button color="" aria-label="Example icon button with a home icon" class="class" matTooltip="Close" matTooltipPosition="below" (click)="end()"><span class='material-icons'>cancel</span></button>
+
+<button class="button1" matTooltip="Edit" matTooltipPosition="below"  type="button" (click)="edit()" mat-raised-button *ngIf="roles.includes('manager')||roles.includes('editor');" color="">Edit</button>    <button class="button2" matTooltip="Delete" matTooltipPosition="below" type="button" (click)="delete()" mat-raised-button *ngIf="roles.includes('manager');" color="">Delete</button> 
+<br><br>
+<div mat-dialog-content>
+
+        <table>
+            <tr><td>Doctor Id</td> <td>{{doctor.id}}</td></tr>
+            <tr><td>Doctor Name</td> <td>{{doctor.doctorName}}</td></tr>
+            <tr><td>Gender</td> <td>{{doctor.gender}}</td></tr>
+            <tr><td>Contact No</td> <td>{{doctor.contactNo}}</td></tr>
+            <tr><td>Registration Id</td> <td>{{doctor.registrationId}}</td></tr>
+            <tr><td>Date Of Birth</td> <td>{{doctor.dob}}</td></tr>
+            <tr><td>E-Mail</td> <td>{{doctor.email}}</td></tr>
+            <tr><td>Address</td> <td>{{doctor.address.street}},<br>{{doctor.address.city}},<br>{{doctor.address.state}},<br>{{doctor.address.zipCode}}</td></tr>
+            <tr><td>Qualification</td> <td>{{doctor.qualification}}</td></tr>
+            <tr><td>Speciality</td> <td>{{doctor.speciality}}</td></tr>
+            <tr><td>Certification</td> <td>{{doctor.certification}}</td></tr>
+            <tr><td>Experience</td> <td>{{doctor.experience}}</td></tr>
+            <tr><td>Hospital Name</td> <td>{{doctor.hospitalName}}</td></tr>
+            <tr><td>Available Time</td> <td>{{doctor.available_time}}</td></tr>
+             <tr><td>Blood Group</td> <td>{{doctor.bloodGroup}}</td></tr>
+             <tr><td>Mode</td> <td>{{doctor.mode}}</td></tr>
+             <tr><td>Fees</td> <td>{{doctor.fees}}</td></tr>
+             <tr><td>Languages Known</td> <td>{{doctor.languagesKnown}}</td></tr>
+             <tr><td>Description</td> <td>{{doctor.description}}</td></tr>
+             <tr><td>Ratings</td> <td>{{doctor.ratings}}</td></tr>
+            </table>
+</div>

@@ -1,0 +1,39 @@
+<div class="list-container"  >
+    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+        <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let doctor of doctors">
+        <mat-card class="mat-elevation-z4" (click)="onClick(doctor.id)">
+          <mat-card-header class="title_center">
+            <mat-card-title >{{doctor.doctorName}}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <table>
+                <tr><td>Doctor Id</td> <td>{{doctor.id}}</td></tr>
+                <tr><td>Doctor Name</td> <td>{{doctor.doctorName}}</td></tr>
+                <!-- <tr><td>Gender</td> <td>{{doctor.gender}}</td></tr> -->
+                <!-- <tr><td>Contact No</td> <td>{{doctor.contactNo}}</td></tr> -->
+                <!-- <tr><td>Registration Id</td> <td>{{doctor.registrationId}}</td></tr> -->
+                <!-- <tr><td>Date Of Birth</td> <td>{{doctor.dob}}</td></tr> -->
+                <!-- <tr><td>E-Mail</td> <td>{{doctor.email}}</td></tr> -->
+                <!-- <tr><td>ADDRESS</td> <td>{{doctor.address.street}},<br>{{doctor.address.city}},<br>{{doctor.address.state}},<br>{{doctor.address.zipCode}}</td></tr> -->
+                <tr><td>Qualification</td> <td>{{doctor.qualification}}</td></tr>
+                <tr><td>Speciality</td> <td>{{doctor.speciality}}</td></tr>
+                <!-- <tr><td>Certification</td> <td>{{doctor.certification}}</td></tr> -->
+                <tr><td>Experience</td> <td>{{doctor.experience}}</td></tr>
+                <tr><td>Hospital</td> <td>{{doctor.hospitalName}}</td></tr>
+                <!-- <tr><td>Available Time</td> <td>{{doctor.available_time}}</td></tr> -->
+                 <!-- <tr><td>Blood Group</td> <td>{{doctor.bloodGroup}}</td></tr> -->
+                 <!-- <tr><td>Mode</td> <td>{{doctor.mode}}</td></tr> -->
+                 <tr><td>Fees</td> <td>{{doctor.fees}}</td></tr>
+                 <!-- <tr><td>Languages Known</td> <td>{{doctor.languagesKnown}}</td></tr> -->
+                 <!-- <tr><td>Description</td> <td>{{doctor.description}}</td></tr> -->
+                 <tr><td>Ratings</td> <td>{{doctor.ratings}}</td></tr>
+                </table>       
+                <p>---Click For View More---</p>     
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    </div>
+
+
+ 

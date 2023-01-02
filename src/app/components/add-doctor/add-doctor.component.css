@@ -3,3 +3,34 @@
     position: relative;
     text-align: left;
 }
+mat-form-field,fieldset{
+    width: 80%;
+    padding: 5px;
+    margin: 5px;
+}
+legend{
+    color: rgb(20, 4, 34);
+}
+input{
+    font-style: normal;
+    
+}
+mat-radio-group{
+    justify-content: space-between;
+}
+mat-radio-button{
+    justify-content: space-between;
+}
+
+mat-label{
+    width: 90%;
+}
+
+shift{
+    padding-left: 200px;
+}
+
+.margin-spacer{
+    margin-top: 5rem;
+    margin-left: 5px;
+}

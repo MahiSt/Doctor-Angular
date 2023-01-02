@@ -1,12 +1,25 @@
-<p>
-  </p>  
-  <p>
-    <mat-toolbar color="primary">
-      <mat-toolbar-row>
-        <span>List of Doctors</span>
+<mat-toolbar id="fixedMenu">
+    <mat-toolbar-row>
+        <span class="material-icons" *ngIf="!isOnDashboard" (click)="back()" matTooltip="Back" matTooltipPosition="below">arrow_back</span>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" matTooltip="Menu" matTooltipPosition="below">
+          <span class="material-icons">menu</span>  
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item *ngIf="isOnDashboard " (click)="grid()">Grid view</button>
+          <button mat-menu-item *ngIf="!isOnDashboard" (click)="onHome()">Table</button>
+          <button mat-menu-item *ngIf="!isOnAddcomponent && roles.includes('manager')" (click)="onAdd()">Add Doctor</button>
+        </mat-menu>
+        
+        <!-- <mat-icon class="class" aria-hidden="false" aria-label="Example home icon" fontIcon="home" (click)="onHome()"></mat-icon> -->
+        <button mat-icon-button color="" aria-label="Example icon button with a home icon" class="class" matTooltip="Home" matTooltipPosition="below" (click)="onHome()">
+          <mat-icon>home</mat-icon>
+        </button>
+        <div class="para">
+          <p >Doctor Application</p>
+        </div>
         <span class="example-spacer"></span>
-        <button style = "float:right" mat-raised-button (click)="onClick()">Log Out</button>
+        <span style="padding-right: 15px;" class="material-icons" *ngIf="roles.includes('manager');" mat-raised-button matTooltip="Add Doctor" matTooltipPosition="above" (click)="onAdd()">person_add</span>
+        <span class="material-icons" mat-raised-button matTooltip="Log Out" matTooltipPosition="below" (click)="onClick()">logout</span>
     </mat-toolbar-row>
-      </mat-toolbar>
-    </p>
-    <app-doctor-list></app-doctor-list>
+</mat-toolbar>
+

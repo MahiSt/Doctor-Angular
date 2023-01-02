@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { getMatInputUnsupportedTypeError } from '@angular/material/input';
 import {
   ActivatedRouteSnapshot,
   Router,
@@ -24,7 +25,6 @@ export class AuthGuard extends KeycloakAuthGuard {
     state: RouterStateSnapshot
   ) {
     const user =this._authService.getLoggedUser();
-    console.log(user);
 
     // Force the user to log in if currently unauthenticated.
     if (!user) {
@@ -43,6 +43,8 @@ export class AuthGuard extends KeycloakAuthGuard {
     }
 
     // Allow the user to proceed if all the required roles are present.
-    return requiredRoles.every((role) => userRoles.includes(role));
+    return requiredRoles.some((role) => userRoles.includes(role));
+
+
   }
 }

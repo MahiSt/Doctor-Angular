@@ -1,0 +1,27 @@
+table{
+    background-color: rgb(233, 187, 233);
+}
+td{
+    padding: 5px;
+}
+h1{
+    color: navy;
+}
+.button1{
+    background-color: blanchedalmond;
+    margin-left: 20px;
+    margin-right: 30px;
+    margin-top: 0rem;
+}
+.button2{
+    background-color: rgb(216, 39, 39);
+
+}
+.class{
+    padding-right: 10px;
+}
+.mat-dialog-title {
+    margin: 0 0 20px;
+    display: block;
+    font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;    
+}

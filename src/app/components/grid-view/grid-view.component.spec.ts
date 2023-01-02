@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModelpopupComponent } from './modelpopup.component';
+import { GridViewComponent } from './grid-view.component';
 
-describe('ModelpopupComponent', () => {
-  let component: ModelpopupComponent;
-  let fixture: ComponentFixture<ModelpopupComponent>;
+describe('GridViewComponent', () => {
+  let component: GridViewComponent;
+  let fixture: ComponentFixture<GridViewComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ModelpopupComponent ]
+      declarations: [ GridViewComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ModelpopupComponent);
+    fixture = TestBed.createComponent(GridViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
