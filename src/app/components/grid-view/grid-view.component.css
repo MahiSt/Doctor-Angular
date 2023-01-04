@@ -25,6 +25,9 @@ mat-card{
     background-color: rgb(209, 231, 223);
     height: 15rem;
 }
+.mat-card:hover{
+    background-color: rgb(147, 245, 224);
+}
 .list-container{
     padding-top: 5rem;
     /* overflow-y: hidden; */

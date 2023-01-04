@@ -5,7 +5,7 @@ import { Observable ,map } from 'rxjs';
 import { Doctor } from '../models/doctor';
 
 type DoctorListResponse = {
-  content: Doctor[]
+  content: Doctor[],
 }
 
 @Injectable({
@@ -14,12 +14,14 @@ type DoctorListResponse = {
 export class DoctorService {
 
   private _cudUrl= "http://localhost:9000/doctor-cud-api/doctors/";
-  private _getUrl="http://localhost:9000/doctor-get-api/doctors/"
+  private _getUrl="http://localhost:9000/doctor-get-api/doctors/";
+
+  count!:number;
 
   constructor(private _httpClient:HttpClient) { }
 
   getdoctors=():Observable<Doctor[]>=>{
-    return this._httpClient.get<Doctor[]>(this._getUrl).pipe();
+    return this._httpClient.get<Doctor[]>(this._getUrl);
   }
 
   getById=(id:number):Observable<Doctor>=>{
@@ -42,7 +44,7 @@ export class DoctorService {
     return this._httpClient.post<void>(this._cudUrl,doctor);
   }
 
-  getDoctorsWithSortingAndPagination(offset:number,pageSize:number,active:string,direction:string){
+  getDoctorsWithSortingAndPagination(offset:number,pageSize:number,active:string,direction:string):Observable<Doctor[]>{
     if(direction){
       let doctorResponse$=this._httpClient.get<DoctorListResponse>(this._getUrl.concat("page/")+offset+"/"+pageSize+"/sort/"+active+"/"+direction);
     return doctorResponse$.pipe(map((response)=>{
@@ -55,14 +57,8 @@ export class DoctorService {
 
   }
 
-  // getSortedList(active:String,direction:String){
-  //   if(direction){
-  //     let url=this._baseUrl.concat("sort/")+active+"/"+direction;
-  //     let doctorResponse$=this._httpClient.get<Doctor[]>(url);
-  //     return doctorResponse$;
-  //   }
-  //   else{
-  //     return this.getdoctors();
-  //   }
-  // }
+  getNoOfElements(){
+    return this._httpClient.get<number>(this._getUrl.concat("/count"));    
+  }
+
 }

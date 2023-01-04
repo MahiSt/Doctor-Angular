@@ -1,21 +1,28 @@
-<p mat-dialog-title>Doctor: {{doctor.doctorName}}</p>
-<button mat-icon-button color="" aria-label="Example icon button with a home icon" class="class" matTooltip="Close" matTooltipPosition="below" (click)="end()"><span class='material-icons'>cancel</span></button>
+<mat-toolbar>
+    <mat-toolbar-row>
+        <div class="para">
+<p mat-dialog-title>Doctor: {{doctor.doctorName}}</p></div>
+<span class="example-spacer"></span>
+<button matTooltip="Edit" matTooltipPosition="below"  (click)="edit()" mat-button *ngIf="roles.includes('manager')||roles.includes('editor');"><mat-icon>edit</mat-icon></button>    
+<button matTooltip="Delete" matTooltipPosition="below" (click)="delete()" mat-button *ngIf="roles.includes('manager');"><mat-icon >delete</mat-icon></button> 
+<button mat-icon-button  aria-label="Example icon button with a home icon" class="pad" matTooltip="Close" matTooltipPosition="below" (click)="end()"><span class='material-icons'>cancel</span></button>
 
-<button class="button1" matTooltip="Edit" matTooltipPosition="below"  type="button" (click)="edit()" mat-raised-button *ngIf="roles.includes('manager')||roles.includes('editor');" color="">Edit</button>    <button class="button2" matTooltip="Delete" matTooltipPosition="below" type="button" (click)="delete()" mat-raised-button *ngIf="roles.includes('manager');" color="">Delete</button> 
-<br><br>
-<div mat-dialog-content>
+</mat-toolbar-row>
+</mat-toolbar>
+<div mat-dialog-content >
 
-        <table>
+        <table class="content-bg">
             <tr><td>Doctor Id</td> <td>{{doctor.id}}</td></tr>
             <tr><td>Doctor Name</td> <td>{{doctor.doctorName}}</td></tr>
             <tr><td>Gender</td> <td>{{doctor.gender}}</td></tr>
             <tr><td>Contact No</td> <td>{{doctor.contactNo}}</td></tr>
             <tr><td>Registration Id</td> <td>{{doctor.registrationId}}</td></tr>
-            <tr><td>Date Of Birth</td> <td>{{doctor.dob}}</td></tr>
+            <tr><td>Date Of Birth</td> <td>{{doctor.dob | date:"shortDate"}}</td></tr>
             <tr><td>E-Mail</td> <td>{{doctor.email}}</td></tr>
             <tr><td>Address</td> <td>{{doctor.address.street}},<br>{{doctor.address.city}},<br>{{doctor.address.state}},<br>{{doctor.address.zipCode}}</td></tr>
             <tr><td>Qualification</td> <td>{{doctor.qualification}}</td></tr>
-            <tr><td>Speciality</td> <td>{{doctor.speciality}}</td></tr>
+            <!-- <tr><td>Speciality</td> <td *ngFor="let spec of specialities"><div *ngIf="doctor.speciality===spec.value">{{spec.desc}}</div></td></tr> -->
+            <tr><td>Speciality</td> <td>{{doctor.speciality}}</td></tr>           
             <tr><td>Certification</td> <td>{{doctor.certification}}</td></tr>
             <tr><td>Experience</td> <td>{{doctor.experience}}</td></tr>
             <tr><td>Hospital Name</td> <td>{{doctor.hospitalName}}</td></tr>

@@ -1,9 +1,10 @@
 table {
     width: 350%;
-  }
+    background-color: rgb(243, 247, 198);
+}
   div {
-    overflow-y: scroll;
-    overflow-x: scroll;
+    /* overflow-y: scroll;
+    overflow-x: scroll; */
     max-height: 500px;
   }
 .margin-left mat-radion-button:not(:first-child){
@@ -11,15 +12,36 @@ table {
 }
 .list-icons{
   float: none;
+  margin-left: 15px;
+  background-color: rgb(197, 229, 255);
+}
+.list-icons:hover{
+  background-color: rgb(252, 127, 252);
 }
 mat-paginator{
   position: fixed;
   bottom: 0px;
   width: 100%;
 }
-/* .list-container{
+.list-container{
   padding-top: 5rem;
-  padding-bottom: 5rem;
-} */
+  margin-bottom: 4rem;
+}
+.pad{
+  padding-right: 15px;
+  float: right;
+}
+.scroll{
+  overflow: auto;
+}
+.header{
+  background-color: rgb(204, 214, 57);
+}
+.header:hover{
+  background-color: rgb(250, 168, 168);
+}
+.row-:hover{
+  background-color: rgb(194, 231, 214);
+}
 
   

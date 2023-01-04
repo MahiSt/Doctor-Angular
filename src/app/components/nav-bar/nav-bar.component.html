@@ -17,9 +17,22 @@
         <div class="para">
           <p >Doctor Application</p>
         </div>
-        <span class="example-spacer"></span>
+
+       <span class="example-spacer"></span>
         <span style="padding-right: 15px;" class="material-icons" *ngIf="roles.includes('manager');" mat-raised-button matTooltip="Add Doctor" matTooltipPosition="above" (click)="onAdd()">person_add</span>
-        <span class="material-icons" mat-raised-button matTooltip="Log Out" matTooltipPosition="below" (click)="onClick()">logout</span>
+
+        <button mat-icon-button [matMenuTriggerFor]="profile" aria-label="Example icon-button with a menu" matTooltip="Profile" matTooltipPosition="below">
+          <mat-icon> account_circle </mat-icon>  
+        </button>
+        <mat-menu #profile="matMenu">
+          <button mat-menu-item (click)="onprofile()">Profile</button>
+          <button mat-menu-item (click)="onClick()">Logout</button>
+        </mat-menu>
+
+
+        <!-- <span class="example-spacer"></span>
+        <span style="padding-right: 15px;" class="material-icons" *ngIf="roles.includes('manager');" mat-raised-button matTooltip="Add Doctor" matTooltipPosition="above" (click)="onAdd()">person_add</span>
+        <span class="material-icons" mat-raised-button matTooltip="Log Out" matTooltipPosition="below" (click)="onClick()">logout</span> -->
     </mat-toolbar-row>
 </mat-toolbar>
 

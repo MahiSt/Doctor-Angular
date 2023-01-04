@@ -114,31 +114,31 @@ export class AddDoctorComponent implements OnInit {
   ];
 
   doctorForm = new FormGroup({
-    id: new FormControl({ value: 0, disabled: false }),
+    id: new FormControl<number|null>(null,Validators.required),
     doctorName: new FormControl('', Validators.required),
     gender: new FormControl('Male'),
-    contactNo: new FormControl(0, Validators.required),
-    registrationId: new FormControl(0, Validators.required),
+    contactNo: new FormControl<number|null>(null, Validators.required),
+    registrationId: new FormControl<number|null>(null, Validators.required),
     dob: new FormControl(),
     email: new FormControl('', Validators.required),
     address: new FormGroup({
       street: new FormControl('', Validators.required),
       city: new FormControl('', Validators.required),
       state: new FormControl('', Validators.required),
-      zipCode: new FormControl(0, Validators.required),
+      zipCode: new FormControl<number|null>(null,Validators.required),
     }),
     qualification: new FormControl('', Validators.required),
     speciality: new FormControl('', Validators.required),
     certification: new FormControl('', Validators.required),
-    experience: new FormControl(0, Validators.required),
+    experience: new FormControl<number|null>(null, Validators.required),
     hospitalName: new FormControl('', Validators.required),
     available_time: new FormControl('', Validators.required),
     bloodGroup: new FormControl('', Validators.required),
     mode: new FormControl([''], Validators.required),
-    fees: new FormControl(0, Validators.required),
+    fees: new FormControl<number|null>(null, Validators.required),
     languagesKnown: new FormControl([''], Validators.required),
     description: new FormControl(),
-    ratings: new FormControl(0),
+    ratings: new FormControl<number|null>(null),
   });
 
 
@@ -183,12 +183,21 @@ export class AddDoctorComponent implements OnInit {
 
   }
   }
-  openSnackBar(name: string) {
-    if(this.flag){
-      this._snackBar.open(name+" - Updated Successfully", "Continue" );
+  openSnackBar(check: boolean,name?:string) {
+    if(this.flag && check){
+      this._snackBar.open(name+"Updated Successfully", "Continue",{
+        duration: 3000
+      } );
+    }
+    else if(check){
+      this._snackBar.open(name+" - Added Sucessfully","Continue",{
+        duration: 3000
+      });
     }
     else{
-      this._snackBar.open(name+" - Added Sucessfully","Continue");
+      this._snackBar.open("Enter all the required fields","Ok",{
+        duration: 3000
+      });
     }
   }
 

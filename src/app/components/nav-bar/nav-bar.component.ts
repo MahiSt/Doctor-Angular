@@ -50,4 +50,8 @@ export class NavBarComponent implements OnInit {
     this._router.navigate(['/grid-view']);
   }
 
+  onprofile(){
+    this._service.redirectToProfile();
+  }
+
 }

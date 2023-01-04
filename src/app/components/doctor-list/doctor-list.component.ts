@@ -28,6 +28,7 @@ export class DoctorListComponent implements OnInit {
   id!:number;
   active!:string;
   direction!:string;
+  leng!:number;
 
   displayedColumns: string[] = [       
      'id',
@@ -52,6 +53,30 @@ export class DoctorListComponent implements OnInit {
      'ratings',
   ];
 
+  ColumnChooser: string[] = [       
+    'Id',
+    'Doctor Name',
+    'Gender',
+    'Contact No',
+    'Registration Id',
+    'Dob',
+    'Email',
+    'Address',
+    'Qualification',
+    'Speciality',
+    'Certification', 
+    'Experience',
+    'Hospital Name',
+    'Available Time',
+    'Blood Group',
+    'Mode',
+    'Fees',
+    'Languages Known',
+    'Description',
+    'Ratings',
+ ];
+
+
   constructor(private _doctorService:DoctorService,
               private _dialog:MatDialog,
               private _authService:AuthService,
@@ -64,7 +89,8 @@ export class DoctorListComponent implements OnInit {
     this.getAll();
     this.roles=this._authService.getRoles();
     this.offset=0;
-    this.pageSize=5;
+    this.pageSize=10;
+    this.getCount();
   }
 
   getAll(){
@@ -144,13 +170,18 @@ export class DoctorListComponent implements OnInit {
 
   edit(doctorId:number){
     console.log(doctorId);
-    this._snackBar.open("Loading....", "OK!" );
+    this._snackBar.open("Loading....", "OK!",{
+      duration: 3000
+    } );
+
     this._router.navigate(['/update-doctor',doctorId]);
   }
 
   delete(doctorId:number){
     console.log(this.id);
-    this._snackBar.open("Loading....", "Ok!" );
+    this._snackBar.open("Loading....", "Ok!",{
+      duration: 3000
+    } );
     this._doctorService.deleteDoctor(doctorId).subscribe({
       next:(data)=>{
         console.log(data);
@@ -159,4 +190,12 @@ export class DoctorListComponent implements OnInit {
     });
   }
 
+  getCount(){
+    this._doctorService.getNoOfElements().subscribe({
+      next:(data)=>{
+        this.leng=data;
+        console.log(data);
+      }
+    });
+  }
 }

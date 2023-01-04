@@ -1,21 +1,11 @@
 table{
-    background-color: rgb(233, 187, 233);
+    background-color: rgb(251, 240, 252);
 }
 td{
     padding: 5px;
 }
 h1{
     color: navy;
-}
-.button1{
-    background-color: blanchedalmond;
-    margin-left: 20px;
-    margin-right: 30px;
-    margin-top: 0rem;
-}
-.button2{
-    background-color: rgb(216, 39, 39);
-
 }
 .class{
     padding-right: 10px;
@@ -25,3 +15,29 @@ h1{
     display: block;
     font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;    
 }
+.pad{
+    float: right 100px;
+}
+.example-spacer {
+    flex: 1 1 auto;
+}
+.para{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top: 15px;
+}
+mat-toolbar-row:hover{
+    background-color: rgb(171, 196, 250);
+}
+mat-toolbar-row{
+    background-color: rgb(188, 248, 248); 
+    margin-right: 30px;
+}
+.content-bg:hover{
+    background-color:  rgb(245, 215, 245);
+}
+
